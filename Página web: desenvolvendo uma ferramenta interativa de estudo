@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Interativos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #6c63ff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #flashcards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 250px;
+            height: 150px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .flipped {
+            background-color: #6c63ff;
+            color: #fff;
+        }
+
+        footer {
+            margin-top: auto;
+            background-color: #6c63ff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Flashcards Interativos</h1>
+    </header>
+
+    <main>
+        <div id="flashcards">
+            <!-- Flashcards serão adicionados aqui dinamicamente -->
+        </div>
+    </main>
+
+    <footer>
+        <p>Feito por Andrey Veloso</p>
+    </footer>
+
+    <script>
+        const cards = [
+            { question: "O que é HTML?", answer: "HTML é a linguagem de marcação usada para estruturar conteúdo na web." },
+            { question: "O que é CSS?", answer: "CSS é a linguagem de estilo usada para personalizar a aparência do conteúdo na web." },
+            { question: "O que é JavaScript?", answer: "JavaScript é uma linguagem de programação que torna as páginas web interativas." }
+        ];
+
+        const container = document.getElementById('flashcards');
+
+        cards.forEach(card => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.textContent = card.question;
+
+            cardElement.addEventListener('click', () => {
+                cardElement.classList.toggle('flipped');
+                cardElement.textContent = cardElement.classList.contains('flipped') ? card.answer : card.question;
+            });
+
+            container.appendChild(cardElement);
+        });
+    </script>
+</body>
+</html>
